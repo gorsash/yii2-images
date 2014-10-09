@@ -68,7 +68,7 @@ class Image extends \yii\db\ActiveRecord
         $origin = $this->getPathToOrigin();
 
         $filePath = $base.DIRECTORY_SEPARATOR.
-            $sub.DIRECTORY_SEPARATOR.$this->urlAlias.$urlSize.'.'.pathinfo($origin, PATHINFO_EXTENSION);;
+            $sub.DIRECTORY_SEPARATOR.$this->urlAlias.$urlSize.'.png';
         if(!file_exists($filePath)){
             $this->createVersion($origin, $size);
 
