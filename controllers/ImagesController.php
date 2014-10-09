@@ -52,7 +52,7 @@ class ImagesController extends Controller
         }
 
         if($image){
-            header('Content-Type: image/jpg');
+            header('Content-Type: image/png');
             echo $image->getContent($size);
         }else{
             throw new \yii\web\HttpException(404, 'There is no images');

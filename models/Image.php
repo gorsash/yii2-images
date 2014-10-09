@@ -142,7 +142,7 @@ class Image extends \yii\db\ActiveRecord
             $sizePart = '';
         }
 
-        $pathToSave = $cachePath.'/'.$subDirPath.'/'.$this->urlAlias.$sizePart.'.'.$fileExtension;
+        $pathToSave = $cachePath.'/'.$subDirPath.'/'.$this->urlAlias.$sizePart.'.png'; // always using png
 
         BaseFileHelper::createDirectory(dirname($pathToSave), 0777, true);
 
