@@ -70,7 +70,7 @@ class Image extends \yii\db\ActiveRecord
         $filePath = $base.DIRECTORY_SEPARATOR.
             $sub.DIRECTORY_SEPARATOR.$this->urlAlias.$urlSize.'.png';
         if(!file_exists($filePath)){
-            $this->createVersion($origin, $size);
+            $this->createVersion($origin, $size, $filePath);
 
             if(!file_exists($filePath)){
                 throw new \Exception('Problem with image creating.');
@@ -126,7 +126,7 @@ class Image extends \yii\db\ActiveRecord
         return $newSizes;
     }
 
-    public function createVersion($imagePath, $sizeString = false)
+    public function createVersion($imagePath, $sizeString, $pathToSave)
     {
         if(strlen($this->urlAlias)<1){
             throw new \Exception('Image without urlAlias!');
@@ -134,15 +134,6 @@ class Image extends \yii\db\ActiveRecord
 
         $cachePath = $this->getModule()->getCachePath();
         $subDirPath = $this->getSubDur();
-        $fileExtension =  pathinfo($this->filePath, PATHINFO_EXTENSION);
-
-        if($sizeString){
-            $sizePart = '_'.$sizeString;
-        }else{
-            $sizePart = '';
-        }
-
-        $pathToSave = $cachePath.'/'.$subDirPath.'/'.$this->urlAlias.$sizePart.'.png'; // always using png
 
         BaseFileHelper::createDirectory(dirname($pathToSave), 0777, true);
 
